@@ -1,12 +1,27 @@
 package customer;
+import query.Query;
+
+import java.sql.*;
 
 public class Customer {
-	public String nama;
+	public String name;
 	public Integer id;
-	public Customer(String nama, Integer id) {
-		super();
-		this.nama = nama;
-		this.id = id;
-	}
 	
+	public String fetchCustomerName(Query query, Integer customerId) {
+    ResultSet resultSet = query.select("customers", "customer_id = " + customerId);
+    try {
+        while (resultSet.next()) {
+            return resultSet.getString("name");
+        }
+    } catch (SQLException e) {
+        // Handle the exception appropriately
+        e.printStackTrace();
+    }
+    return "";
+}
+
+	public String getName(Query query, int int1) {
+		return null;
+	}
+
 }
